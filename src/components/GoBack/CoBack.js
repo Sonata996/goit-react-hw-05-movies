@@ -1,5 +1,4 @@
 import { BiArrowBack } from "react-icons/bi";
-import { Link } from "react-router-dom";
 import { ConteinerGoBack } from "./GoBack.styled";
 
 export const GoBack = (props) =>{
