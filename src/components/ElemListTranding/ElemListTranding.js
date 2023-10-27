@@ -1,12 +1,13 @@
 // import { useState } from "react"
 import { Link} from "react-router-dom"
+import { LinkTranding } from "./ElemListTranding.styled"
 
 
 
 export const ElemListTranding = ({ element:{original_title, id}}) =>{
 return (
-    <li >
-        <Link to={`/movies/${id}`}>{original_title}</Link>
+    <li>
+        <LinkTranding to={`/movies/${id}`}>{original_title}</LinkTranding>
     </li>
 )
 }

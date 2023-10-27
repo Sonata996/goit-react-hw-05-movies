@@ -1,15 +1,18 @@
 import { Formik, Field, Form } from "formik";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useSearchParams} from "react-router-dom";
 import { serviceAPISearch } from "service/serviceApi";
 
 
 
 
-export const Movies = () =>{
-  const [searchValue, setSearchValue] = useState([])
+export default function Movies(){
+  const [params, setParams] = useSearchParams()
+  const search = params.get('value') ?? ''
+const [searchValue, setSearchValue] = useState([])
 const [value, setValue] = useState('')
 
+const location = useLocation();
 
 useEffect(() =>{
 async function getApiSearchValue() {
@@ -21,8 +24,7 @@ async function getApiSearchValue() {
   }
 }
 getApiSearchValue()
-},[value])
-
+},[value, search])
 
 
     return(
@@ -33,6 +35,7 @@ getApiSearchValue()
           }}
           onSubmit={values => {
             setValue(values.value)
+            setParams({value: values.value})
           }}
         >
           {({ errors, touched }) => (
@@ -49,7 +52,9 @@ getApiSearchValue()
         <ul>
           {searchValue.results.map(elem => 
           <li key={elem.id}>
-            <Link to={`${elem.id}?query=${elem.title}`}>{elem.title}</Link>
+            <Link to={`${elem.id}`} 
+            state={{from:location}}>{elem.title}
+            </Link>
           </li>
           )}
           </ul>}

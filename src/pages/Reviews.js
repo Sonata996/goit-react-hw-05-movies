@@ -5,7 +5,7 @@ import { serviceApiMovieReviews } from "service/serviceApi"
 
 
 
-export const Reviews =() =>{
+export default function Reviews(){
     const params = useParams()
     const [reviews, setReviews] = useState([])
 
