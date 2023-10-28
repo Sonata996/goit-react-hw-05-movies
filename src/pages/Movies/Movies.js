@@ -1,30 +1,35 @@
 import { Formik, Field, Form } from "formik";
-import { useEffect, useState } from "react";
-import { Link, useLocation, useSearchParams} from "react-router-dom";
+import {useEffect, useState } from "react";
+import { useLocation,} from "react-router-dom";
 import { serviceAPISearch } from "service/serviceApi";
+import { useSearch } from "hook/useSearch";
+import { ListSearch } from "components/ListSearch/ListSearch";
 
 
+
+
+// const savedLocalStorage = localStorage.getItem('thisSearch')
 
 
 export default function Movies(){
-  const [params, setParams] = useSearchParams()
-  const search = params.get('value') ?? ''
+  const { changeSearch,query } = useSearch()
 const [searchValue, setSearchValue] = useState([])
 const [value, setValue] = useState('')
-
 const location = useLocation();
+
+
 
 useEffect(() =>{
 async function getApiSearchValue() {
   try{
-    const getApi = await serviceAPISearch(value)
+    const getApi = await serviceAPISearch(query?? value)
     setSearchValue(getApi)
   }catch{
 
   }
 }
 getApiSearchValue()
-},[value, search])
+},[value,query])
 
 
     return(
@@ -35,7 +40,7 @@ getApiSearchValue()
           }}
           onSubmit={values => {
             setValue(values.value)
-            setParams({value: values.value})
+            changeSearch(values.value)
           }}
         >
           {({ errors, touched }) => (
@@ -48,16 +53,12 @@ getApiSearchValue()
             </Form>
           )}
         </Formik>
-        {value && 
-        <ul>
-          {searchValue.results.map(elem => 
-          <li key={elem.id}>
-            <Link to={`${elem.id}`} 
-            state={{from:location}}>{elem.title}
-            </Link>
-          </li>
-          )}
-          </ul>}
+        {query && searchValue.length !== 0 && 
+        <ListSearch 
+        searchValue={searchValue}
+        location={location}
+        />
+        }
       </div>
       )
 }

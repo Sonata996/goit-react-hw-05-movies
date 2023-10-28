@@ -4,10 +4,11 @@ import { lazy } from "react";
 
 
 const Home = lazy(()=> import('pages/Home/Home'))
-const Movies = lazy(() => import('pages/Movies'))
+const Movies = lazy(() => import('pages/Movies/Movies'))
 const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'))
-const Reviews = lazy(() =>import('pages/Reviews'))
-const Cast = lazy(() => import('pages/Cast/Cast'))
+const Reviews = lazy(() =>import('components/Reviews'))
+const Cast = lazy(() => import('components/Cast/Cast'))
+const NotFoundPage = lazy(() => import('components/NotFoundPage'));
 
 
 export const App = () => {
@@ -20,6 +21,7 @@ export const App = () => {
           <Route path="cast" element={<Cast />}/>
           <Route path="reviews" element={<Reviews/>}/>
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );

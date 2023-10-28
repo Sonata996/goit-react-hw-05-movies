@@ -10,7 +10,7 @@ return(
         <Navigation />
     </header>
 
-    <Suspense fallback={<div> <h1>dfsdfgsdssdfgvdfsdvfs</h1></div>}>
+    <Suspense fallback={<div> <h1>Reload the page</h1></div>}>
             <Outlet />
           </Suspense>
     </div>

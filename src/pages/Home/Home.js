@@ -1,7 +1,6 @@
 import {  useState } from "react"
 import { serviceAPITrending } from "service/serviceApi"
-import { ElemListTranding } from "components/ElemListTranding/ElemListTranding"
-import { LinkTranding } from "./Home.styled"
+import { ListLinkTranding } from "components/LinkTranding/LinkTranding"
 
 
 
@@ -28,9 +27,7 @@ addTrendingList()
         <div>
             <h1>Trending today</h1>
         
-        <LinkTranding>
-            {movie.map(elem => <ElemListTranding key={elem.id} element={elem}/>)}
-        </LinkTranding>
+            <ListLinkTranding movie={movie}/>
     </div>
     )
 }

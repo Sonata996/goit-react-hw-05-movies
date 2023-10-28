@@ -1,4 +1,5 @@
 import { format } from 'date-fns'
+import { UlGenres } from './BlockInfoMovie.styled'
 
 
 export const BlockInfoMovie = ({movie}) =>{
@@ -12,7 +13,9 @@ return(
                 <h3>Overview</h3>
                 <p>{movie.overview}</p> 
                 <h3>Genres</h3>
-                {movie.genres.map(elem => <span key={elem.id}>{elem.name}</span>)}
+                <UlGenres>
+                {movie.genres.map(elem => <li key={elem.id}>{elem.name}</li>)}
+                </UlGenres>
             </div>
 )
 }

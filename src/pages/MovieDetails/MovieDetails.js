@@ -15,7 +15,7 @@ import { ListAdditionalInfo } from "components/AdditionalInfo/AdditionalInfo";
 export default function MovieElemInfo(){
     const params = useParams()
     const [movie, setMovie] = useState()
-
+    
 
     const location = useLocation();
 
@@ -24,7 +24,6 @@ useEffect(()=>{
         try{
             const getApi = await serviceApiMovieId(params.movieId)
             setMovie(getApi)
-
         }catch{
             
         }
