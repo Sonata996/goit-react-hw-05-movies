@@ -1,10 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 export default function NotFoundPage() {
-  return (
-    <div>
-      Non-existent route. Follow this link to 
-      <Link to="/">Home page</Link>.
-    </div>
-  );
+  let params = useParams()
+  if (params !== 'movies') {
+     return <Navigate to='/'/>
+  }
 }

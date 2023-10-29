@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import {Outlet} from "react-router-dom"
 import { Navigation } from "./Navigation"
 import { Suspense } from "react"
 
@@ -10,7 +10,7 @@ return(
         <Navigation />
     </header>
 
-    <Suspense fallback={<div> <h1>Reload the page</h1></div>}>
+    <Suspense fallback={<h1>LOADING PAGE...</h1>}>
             <Outlet />
           </Suspense>
     </div>
